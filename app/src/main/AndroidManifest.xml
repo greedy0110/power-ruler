@@ -3,6 +3,7 @@
     package="com.greedy0110.powerruler">
 
     <application
+        android:name=".PowerApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
