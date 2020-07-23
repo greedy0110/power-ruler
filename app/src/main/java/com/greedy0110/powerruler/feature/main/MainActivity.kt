@@ -1,9 +1,11 @@
-package com.greedy0110.powerruler
+package com.greedy0110.powerruler.feature.main
 
 import android.os.Bundle
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.observe
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.ListAdapter
@@ -11,11 +13,13 @@ import androidx.recyclerview.widget.RecyclerView
 import com.greedy0110.powerruler.databinding.ActivityMainBinding
 import com.greedy0110.powerruler.databinding.ItemHeaderBinding
 import com.greedy0110.powerruler.databinding.ItemWorkoutBinding
+import com.greedy0110.powerruler.feature.main.MainViewModel.ItemHolder
 
 class MainActivity : AppCompatActivity() {
 
     private val binding by lazy { ActivityMainBinding.inflate(layoutInflater) }
     private val adapter by lazy { Adapter() }
+    private val viewModel: MainViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,23 +36,22 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        //TODO: 문자열 리소스로 만들기, ViewModel 로 빼기
-        adapter.submitList(
-            emptySequence<ItemHolder>()
-                .plus(ItemHolder.Header)
-                .plus(ItemHolder.Workout("데드리프트"))
-                .plus(ItemHolder.Workout("스쿼트"))
-                .plus(ItemHolder.Workout("밴치프레스"))
-                .toList()
-        )
+        //TODO: binding adapter 로 빼기
+        viewModel.items.observe(this) {
+            adapter.submitList(it)
+        }
     }
 
     //region RecyclerView.
 
     private inner class Adapter : ListAdapter<ItemHolder, RecyclerView.ViewHolder>(
         object : DiffUtil.ItemCallback<ItemHolder>() {
-            override fun areItemsTheSame(oldItem: ItemHolder, newItem: ItemHolder): Boolean =
-                oldItem == newItem
+            override fun areItemsTheSame(oldItem: ItemHolder, newItem: ItemHolder): Boolean {
+                return when {
+                    oldItem is ItemHolder.Workout && newItem is ItemHolder.Workout -> oldItem.name == newItem.name
+                    else -> oldItem == newItem
+                }
+            }
 
             override fun areContentsTheSame(oldItem: ItemHolder, newItem: ItemHolder): Boolean =
                 oldItem == newItem
@@ -64,8 +67,12 @@ class MainActivity : AppCompatActivity() {
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
             return when (viewType) {
-                0 -> HeaderViewHolder(ItemHeaderBinding.inflate(layoutInflater, parent, false))
-                1 -> WorkoutViewHolder(ItemWorkoutBinding.inflate(layoutInflater, parent, false))
+                0 -> HeaderViewHolder(
+                    ItemHeaderBinding.inflate(layoutInflater, parent, false)
+                )
+                1 -> WorkoutViewHolder(
+                    ItemWorkoutBinding.inflate(layoutInflater, parent, false)
+                )
                 else -> throw IllegalArgumentException("뭔가 이상함.")
             }
         }
@@ -78,20 +85,18 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private class HeaderViewHolder(val binding: ItemHeaderBinding) :
+    private inner class HeaderViewHolder(val binding: ItemHeaderBinding) :
         RecyclerView.ViewHolder(binding.root)
 
-    private class WorkoutViewHolder(val binding: ItemWorkoutBinding) :
+    private inner class WorkoutViewHolder(val binding: ItemWorkoutBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        private val context = itemView.context
-
         fun onBind(item: ItemHolder.Workout) {
             binding.name.text = item.name
 
             //TODO: 스피너 세팅
             val spinnerItems = List(15) { it + 1 }
             val spinnerAdapter = ArrayAdapter<Int>(
-                context,
+                this@MainActivity,
                 android.R.layout.simple_spinner_dropdown_item,
                 spinnerItems
             )
@@ -101,11 +106,6 @@ class MainActivity : AppCompatActivity() {
 
             //TODO: 이거로 변경된 값을 넘기기
         }
-    }
-
-    sealed class ItemHolder {
-        object Header : ItemHolder()
-        data class Workout(val name: String) : ItemHolder()
     }
 
     //endregion

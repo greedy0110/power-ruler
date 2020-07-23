@@ -5,12 +5,15 @@
 
     <data>
 
+        <variable
+            name="viewModel"
+            type="com.greedy0110.powerruler.feature.main.MainViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".MainActivity">
+        tools:context=".feature.main.MainActivity">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/list_workout"
@@ -21,5 +24,24 @@
             android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <!-- TODO: Disable 상태에 따른 dim 처리 -->
+        <Button
+            android:id="@+id/button_confirm"
+            style="@style/TextStyle.PlexBold"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="32dp"
+            android:backgroundTint="@android:color/holo_orange_light"
+            android:enabled="@{viewModel.enableConfirm}"
+            android:text="1RM 측정하기"
+            android:textColor="@android:color/white"
+            android:textSize="22sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/list_workout"
+            app:layout_constraintVertical_bias="0.8" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
