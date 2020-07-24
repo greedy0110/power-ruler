@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">PowerRuler</string>
+
+    <string name="dead_lift">DeadLift</string>
+    <string name="squat">Squat</string>
+    <string name="bench_press">BenchPress</string>
+
+    <string name="system_error">system error</string>
 </resources>
