@@ -6,6 +6,7 @@ class MemoryEverythingRepository : EverythingRepository {
 
     private val weightCache = mutableMapOf<WorkoutKey, Kg>()
     private val repeatCache = mutableMapOf<WorkoutKey, Int>()
+    private var goal: Kg? = null
 
     override suspend fun getName(): String? {
         TODO("Not yet implemented")
@@ -29,5 +30,13 @@ class MemoryEverythingRepository : EverythingRepository {
 
     override suspend fun setRepeat(workout: WorkoutKey, repeat: Int) {
         repeatCache[workout] = repeat
+    }
+
+    override suspend fun getGoal(): Kg? {
+        return goal
+    }
+
+    override suspend fun setGoal(goal: Kg) {
+        this.goal = goal
     }
 }

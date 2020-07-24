@@ -18,4 +18,8 @@ interface EverythingRepository {
     suspend fun getRepeat(workout: WorkoutKey): Int?
 
     suspend fun setRepeat(workout: WorkoutKey, repeat: Int)
+
+    suspend fun getGoal(): Kg?
+
+    suspend fun setGoal(goal: Kg)
 }
