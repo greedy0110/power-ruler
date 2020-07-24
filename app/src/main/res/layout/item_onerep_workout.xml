@@ -5,6 +5,13 @@
 
     <data>
 
+        <variable
+            name="viewModel"
+            type="com.greedy0110.powerruler.feature.onerep.OneRepMaxViewModel" />
+
+        <variable
+            name="workout"
+            type="com.greedy0110.powerruler.feature.onerep.OneRepFormulaUseCase.Workout" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -25,20 +32,22 @@
                 style="@style/TextStyle.PlexBold"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="390"
+                android:text="@{viewModel.getOneRepBy(workout)}"
                 android:textSize="32sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="390" />
 
             <TextView
                 android:id="@+id/text_unit_onerep"
                 style="@style/TextStyle.PlexRegular"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="kg"
+                android:text="@{viewModel.unit}"
                 android:textSize="24sp"
                 app:layout_constraintBottom_toBottomOf="@id/text_number_onerep"
-                app:layout_constraintStart_toEndOf="@id/text_number_onerep" />
+                app:layout_constraintStart_toEndOf="@id/text_number_onerep"
+                tools:text="kg" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <TextView
@@ -46,6 +55,7 @@
             style="@style/TextStyle.PlexBold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="@{viewModel.getWorkoutName(workout)}"
             android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="@id/container_total_onerep"
             app:layout_constraintStart_toStartOf="@id/container_total_onerep"
@@ -59,11 +69,12 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
             android:layout_marginBottom="12dp"
-            android:text="100kg 10rep"
+            android:text="@{viewModel.getWorkoutDetail(workout)}"
             android:textSize="12sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@id/container_total_onerep"
             app:layout_constraintStart_toStartOf="@id/container_total_onerep"
-            app:layout_constraintTop_toBottomOf="@id/text_name" />
+            app:layout_constraintTop_toBottomOf="@id/text_name"
+            tools:text="100kg 10rep" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
