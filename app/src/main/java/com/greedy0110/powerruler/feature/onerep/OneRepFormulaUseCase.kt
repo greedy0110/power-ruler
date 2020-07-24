@@ -6,10 +6,12 @@ import com.greedy0110.powerruler.domain.Kg
 import com.greedy0110.powerruler.domain.OneRepMaxFormula
 import com.greedy0110.powerruler.repository.EverythingRepository
 import com.greedy0110.powerruler.repository.WorkoutKey
+import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.runBlocking
+import javax.inject.Inject
 
-class OneRepFormulaUseCase(
-    private val context: Context,
+class OneRepFormulaUseCase @Inject constructor(
+    @ApplicationContext private val context: Context,
     private val everythingRepository: EverythingRepository,
     private val oneRepMaxFormula: OneRepMaxFormula
 ) {
@@ -28,6 +30,14 @@ class OneRepFormulaUseCase(
 
     fun getRepeat(workout: Workout) = runBlocking {
         everythingRepository.getRepeat(workout.uniqueName)
+    }
+
+    fun setGoal(goal: Kg) = runBlocking {
+        everythingRepository.setGoal(goal)
+    }
+
+    fun getGoal() = runBlocking {
+        everythingRepository.getGoal()
     }
 
     fun getOneRepMaxBy(workout: Workout): Kg = runBlocking {

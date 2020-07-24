@@ -1,8 +1,11 @@
 package com.greedy0110.powerruler.repository
 
 import com.greedy0110.powerruler.domain.Kg
+import javax.inject.Inject
+import javax.inject.Singleton
 
-class MemoryEverythingRepository : EverythingRepository {
+@Singleton
+class MemoryEverythingRepository @Inject constructor() : EverythingRepository {
 
     private val weightCache = mutableMapOf<WorkoutKey, Kg>()
     private val repeatCache = mutableMapOf<WorkoutKey, Int>()

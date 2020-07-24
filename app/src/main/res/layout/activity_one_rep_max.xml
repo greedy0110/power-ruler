@@ -5,6 +5,9 @@
 
     <data>
 
+        <variable
+            name="viewModel"
+            type="com.greedy0110.powerruler.feature.onerep.OneRepMaxViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -12,17 +15,93 @@
         android:layout_height="match_parent"
         tools:context=".feature.onerep.OneRepMaxActivity">
 
-        <TextView
-            style="@style/TextStyle.PlexBold"
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guide_total_top"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.1" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guide_total_bottom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.4" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/container_total_onerep"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@id/guide_total_bottom"
+            app:layout_constraintEnd_toStartOf="@id/container_total_goal"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/guide_total_top">
+
+            <TextView
+                android:id="@+id/text_number_onerep"
+                style="@style/TextStyle.PlexBold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{viewModel.totalOneRep}"
+                android:textSize="56sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="390" />
+
+            <TextView
+                android:id="@+id/text_unit_onerep"
+                style="@style/TextStyle.PlexRegular"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{viewModel.unit}"
+                android:textSize="24sp"
+                app:layout_constraintBottom_toBottomOf="@id/text_number_onerep"
+                app:layout_constraintStart_toEndOf="@id/text_number_onerep"
+                tools:text="kg" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/container_total_goal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            app:layout_constraintBottom_toBottomOf="@id/container_total_onerep"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/container_total_onerep"
+            app:layout_constraintTop_toBottomOf="@id/container_total_onerep">
+
+            <TextView
+                android:id="@+id/text_number_goal"
+                style="@style/TextStyle.PlexBold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{viewModel.goal}"
+                android:textSize="24sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="500" />
+
+            <TextView
+                android:id="@+id/text_unit_goal"
+                style="@style/TextStyle.PlexRegular"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{viewModel.unit}"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toBottomOf="@id/text_number_goal"
+                app:layout_constraintStart_toEndOf="@id/text_number_goal"
+                tools:text="kg" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/list_workout"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:layout_marginEnd="32dp"
-            android:text="당신의 1RM은 ~ 입니다."
-            android:textSize="56sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="@id/guide_total_bottom" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
