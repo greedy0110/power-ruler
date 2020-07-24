@@ -18,20 +18,30 @@ class OneRepFormulaUseCase(
         everythingRepository.setWeight(workout.uniqueName, weight)
     }
 
+    fun getWeight(workout: Workout) = runBlocking {
+        everythingRepository.getWeight(workout.uniqueName)
+    }
+
     fun setRepeat(workout: Workout, repeat: Int) = runBlocking {
         everythingRepository.setRepeat(workout.uniqueName, repeat)
     }
 
+    fun getRepeat(workout: Workout) = runBlocking {
+        everythingRepository.getRepeat(workout.uniqueName)
+    }
+
+    fun getOneRepMaxBy(workout: Workout): Kg = runBlocking {
+        val weight = everythingRepository.getWeight(workout.uniqueName)
+            ?: throw IllegalAccessException(context.getString(R.string.system_error))
+        val repeat = everythingRepository.getRepeat(workout.uniqueName)
+            ?: throw IllegalAccessException(context.getString(R.string.system_error))
+
+        oneRepMaxFormula.oneRepKg(weight, repeat)
+    }
+
     fun getOneRepMax(): Kg = runBlocking {
         Workout.values()
-            .map { workout ->
-                val weight = everythingRepository.getWeight(workout.uniqueName)
-                    ?: throw IllegalAccessException(context.getString(R.string.system_error))
-                val repeat = everythingRepository.getRepeat(workout.uniqueName)
-                    ?: throw IllegalAccessException(context.getString(R.string.system_error))
-
-                oneRepMaxFormula.oneRepKg(weight, repeat)
-            }
+            .map { workout -> getOneRepMaxBy(workout) }
             .sum()
     }
 

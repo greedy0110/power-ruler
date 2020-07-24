@@ -52,7 +52,16 @@ class OneRepFormulaUseCaseTest {
 
     @Test
     fun oneRepMaxFormula() {
+        Truth.assertThat(oneRepFormulaUseCase.getOneRepMax()).isNotNull()
+    }
 
-        Truth.assertThat(oneRepFormulaUseCase.getOneRepMax()).isNaN()
+    @Test
+    fun oneRepMaxFormulaBy() {
+        val total = oneRepFormulaUseCase.getOneRepMax()
+        val dead = oneRepFormulaUseCase.getOneRepMaxBy(OneRepFormulaUseCase.Workout.DEAD_LIFT)
+        val squat = oneRepFormulaUseCase.getOneRepMaxBy(OneRepFormulaUseCase.Workout.SQUAT)
+        val bench = oneRepFormulaUseCase.getOneRepMaxBy(OneRepFormulaUseCase.Workout.BENCH_PRESS)
+
+        Truth.assertThat(total == dead + squat + bench).isTrue()
     }
 }
