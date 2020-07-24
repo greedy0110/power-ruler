@@ -1,4 +1,4 @@
-package com.greedy0110.powerruler.feature.onerep
+package com.greedy0110.powerruler.usecase
 
 import android.content.Context
 import com.greedy0110.powerruler.R
@@ -30,14 +30,6 @@ class OneRepFormulaUseCase @Inject constructor(
 
     fun getRepeat(workout: Workout) = runBlocking {
         everythingRepository.getRepeat(workout.uniqueName)
-    }
-
-    fun setGoal(goal: Kg) = runBlocking {
-        everythingRepository.setGoal(goal)
-    }
-
-    fun getGoal() = runBlocking {
-        everythingRepository.getGoal()
     }
 
     fun getOneRepMaxBy(workout: Workout): Kg = runBlocking {

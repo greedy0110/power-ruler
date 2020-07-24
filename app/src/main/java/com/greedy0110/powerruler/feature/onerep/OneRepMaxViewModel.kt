@@ -7,39 +7,42 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
 import com.greedy0110.powerruler.R
-import com.greedy0110.powerruler.feature.onerep.OneRepFormulaUseCase.Workout
+import com.greedy0110.powerruler.usecase.OneRepFormulaUseCase
+import com.greedy0110.powerruler.usecase.OneRepFormulaUseCase.Workout
+import com.greedy0110.powerruler.usecase.UserSettingUseCase
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.runBlocking
 
 class OneRepMaxViewModel @ViewModelInject constructor(
     @ApplicationContext private val context: Context,
-    private val useCase: OneRepFormulaUseCase
+    private val userSettingUseCase: UserSettingUseCase,
+    private val formulaUseCase: OneRepFormulaUseCase
 ) : ViewModel() {
 
     init {
 
         runBlocking {
-            useCase.setGoal(500.0)
+            userSettingUseCase.setGoal(500.0)
 
-            useCase.setWeight(Workout.DEAD_LIFT, 140.0)
-            useCase.setRepeat(Workout.DEAD_LIFT, 2)
+            formulaUseCase.setWeight(Workout.DEAD_LIFT, 140.0)
+            formulaUseCase.setRepeat(Workout.DEAD_LIFT, 2)
 
-            useCase.setWeight(Workout.SQUAT, 100.0)
-            useCase.setRepeat(Workout.SQUAT, 10)
+            formulaUseCase.setWeight(Workout.SQUAT, 100.0)
+            formulaUseCase.setRepeat(Workout.SQUAT, 10)
 
-            useCase.setWeight(Workout.BENCH_PRESS, 80.0)
-            useCase.setRepeat(Workout.BENCH_PRESS, 10)
+            formulaUseCase.setWeight(Workout.BENCH_PRESS, 80.0)
+            formulaUseCase.setRepeat(Workout.BENCH_PRESS, 10)
         }
     }
 
     val unit: LiveData<String> = MutableLiveData("kg")
 
     val goal: LiveData<String> = liveData {
-        emit("/${useCase.getGoal()?.toInt()}")
+        emit("/${userSettingUseCase.getGoal()?.toInt()}")
     }
 
     val totalOneRep: LiveData<String> = liveData {
-        emit("${useCase.getOneRepMax().toInt()}")
+        emit("${formulaUseCase.getOneRepMax().toInt()}")
     }
 
     val items: LiveData<List<ItemHolder>> = MutableLiveData(
@@ -50,7 +53,7 @@ class OneRepMaxViewModel @ViewModelInject constructor(
     fun getOneRepBy(workout: Workout): LiveData<String> {
         return cachedOneRepBy[workout] ?: kotlin.run {
             val new = MutableLiveData(
-                "${useCase.getOneRepMaxBy(workout).toInt()}"
+                "${formulaUseCase.getOneRepMaxBy(workout).toInt()}"
             )
             cachedOneRepBy[workout] = new
             new
@@ -61,7 +64,8 @@ class OneRepMaxViewModel @ViewModelInject constructor(
     fun getWorkoutDetail(workout: Workout): LiveData<String> {
         return cachedWorkoutDetail[workout] ?: kotlin.run {
             val new = MutableLiveData(
-                "${useCase.getWeight(workout)?.toInt()}${unit.value} ${useCase.getRepeat(workout)}rep"
+                "${formulaUseCase.getWeight(workout)
+                    ?.toInt()}${unit.value} ${formulaUseCase.getRepeat(workout)}rep"
             )
             cachedWorkoutDetail[workout] = new
             new

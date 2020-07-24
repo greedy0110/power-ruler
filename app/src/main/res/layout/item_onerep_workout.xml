@@ -11,7 +11,7 @@
 
         <variable
             name="workout"
-            type="com.greedy0110.powerruler.feature.onerep.OneRepFormulaUseCase.Workout" />
+            type="com.greedy0110.powerruler.usecase.OneRepFormulaUseCase" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

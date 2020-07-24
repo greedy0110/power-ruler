@@ -6,7 +6,7 @@ import androidx.test.platform.app.InstrumentationRegistry
 import com.google.common.truth.Truth
 import com.greedy0110.powerruler.domain.OneRepMaxFormula
 import com.greedy0110.powerruler.domain.OneRepMaxFormulaEpley
-import com.greedy0110.powerruler.feature.onerep.OneRepFormulaUseCase
+import com.greedy0110.powerruler.usecase.OneRepFormulaUseCase
 import com.greedy0110.powerruler.repository.EverythingRepository
 import com.greedy0110.powerruler.repository.MemoryEverythingRepository
 import kotlinx.coroutines.runBlocking
@@ -32,11 +32,12 @@ class OneRepFormulaUseCaseTest {
         everythingRepository = MemoryEverythingRepository()
         oneRepFormula = OneRepMaxFormulaEpley()
 
-        oneRepFormulaUseCase = OneRepFormulaUseCase(
-            appContext,
-            everythingRepository,
-            oneRepFormula
-        )
+        oneRepFormulaUseCase =
+            OneRepFormulaUseCase(
+                appContext,
+                everythingRepository,
+                oneRepFormula
+            )
 
         runBlocking {
             oneRepFormulaUseCase.setWeight(OneRepFormulaUseCase.Workout.DEAD_LIFT, 140.0)
