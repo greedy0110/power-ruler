@@ -10,7 +10,6 @@
     <style name="TextStyle">
         <item name="android:textColor">@color/secondaryTextColor</item>
         <item name="android:includeFontPadding">false</item>
-        <item name="android:background">@android:color/transparent</item>
     </style>
 
     <style name="TextStyle.PlexBold">
