@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="itemHolder"
             type="com.greedy0110.powerruler.feature.onerep.OneRepMaxViewModel.ItemHolder2" />
@@ -11,12 +12,15 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        tools:background="@color/background">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/container_total_onerep"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:background="@drawable/background_total_onerep"
             android:padding="20dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -24,33 +28,39 @@
 
             <TextView
                 android:id="@+id/text_number_onerep"
-                style="@style/TextStyle.PlexBold"
+                style="@style/TextStyle.BmEuljiro"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@{itemHolder.onerep}"
-                android:textSize="32sp"
+                android:textSize="22sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/text_unit_onerep"
+                app:layout_constraintHorizontal_chainStyle="packed"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="390" />
 
             <TextView
                 android:id="@+id/text_unit_onerep"
-                style="@style/TextStyle.PlexRegular"
+                style="@style/TextStyle.BmEuljiro"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@{itemHolder.unit}"
-                android:textSize="24sp"
+                android:textSize="12sp"
                 app:layout_constraintBottom_toBottomOf="@id/text_number_onerep"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/text_number_onerep"
                 tools:text="kg" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <TextView
             android:id="@+id/text_name"
-            style="@style/TextStyle.PlexBold"
+            style="@style/TextStyle.BmEuljiro"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
             android:text="@{itemHolder.name}"
+            android:textColor="@color/primaryTextColor"
             android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="@id/container_total_onerep"
             app:layout_constraintStart_toStartOf="@id/container_total_onerep"
@@ -59,12 +69,13 @@
 
         <TextView
             android:id="@+id/text_onerep_detail"
-            style="@style/TextStyle.PlexRegular"
+            style="@style/TextStyle.BmEuljiro"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="8dp"
             android:layout_marginBottom="12dp"
             android:text="@{itemHolder.detail}"
+            android:textColor="@color/primaryTextColor"
             android:textSize="12sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@id/container_total_onerep"

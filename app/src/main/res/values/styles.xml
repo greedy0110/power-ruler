@@ -2,21 +2,26 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorPrimary">@color/primaryColor</item>
+        <item name="colorPrimaryDark">@color/primaryDarkColor</item>
+        <item name="colorAccent">@color/secondaryColor</item>
     </style>
 
     <style name="TextStyle">
-        <item name="android:textColor">@android:color/black</item>
+        <item name="android:textColor">@color/secondaryTextColor</item>
         <item name="android:includeFontPadding">false</item>
+        <item name="android:background">@android:color/transparent</item>
     </style>
 
     <style name="TextStyle.PlexBold">
-        <item name="font">@font/plex_bold</item>
+        <item name="fontFamily">@font/plex_bold</item>
     </style>
 
     <style name="TextStyle.PlexRegular">
-        <item name="font">@font/plex_regular</item>
+        <item name="fontFamily">@font/plex_regular</item>
+    </style>
+
+    <style name="TextStyle.BmEuljiro">
+        <item name="fontFamily">@font/bm_euljiro</item>
     </style>
 </resources>

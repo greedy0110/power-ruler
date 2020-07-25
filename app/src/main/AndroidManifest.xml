@@ -10,15 +10,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".feature.onerep.OneRepMaxActivity">
+        <activity
+            android:name=".feature.onerep.OneRepMaxActivity"
+            android:windowSoftInputMode="adjustPan">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".feature.main.MainActivity">
-        </activity>
+        <activity android:name=".feature.main.MainActivity" />
     </application>
-
 </manifest>
