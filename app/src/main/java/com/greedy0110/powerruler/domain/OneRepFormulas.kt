@@ -8,6 +8,8 @@ import kotlin.math.pow
 class OneRepMaxFormulaEpley @Inject constructor() : OneRepMaxFormula {
 
     override fun oneRepKg(weight: Kg, repeat: Int): Kg {
+        if (weight <= 0 || repeat <= 0) return 0.0
+
         return weight * (1 + repeat / 30.toFloat())
     }
 }
@@ -15,6 +17,8 @@ class OneRepMaxFormulaEpley @Inject constructor() : OneRepMaxFormula {
 class OneRepMaxFormulaBrzycki @Inject constructor() : OneRepMaxFormula {
 
     override fun oneRepKg(weight: Kg, repeat: Int): Kg {
+        if (weight <= 0 || repeat <= 0) return 0.0
+
         return weight * (36 / (37 - repeat).toFloat())
     }
 }
@@ -22,6 +26,8 @@ class OneRepMaxFormulaBrzycki @Inject constructor() : OneRepMaxFormula {
 class OneRepMaxFormulaMcGlothin @Inject constructor() : OneRepMaxFormula {
 
     override fun oneRepKg(weight: Kg, repeat: Int): Kg {
+        if (weight <= 0 || repeat <= 0) return 0.0
+
         return 100 * weight / (101.3 - 2.67123 * repeat)
     }
 }
@@ -29,6 +35,8 @@ class OneRepMaxFormulaMcGlothin @Inject constructor() : OneRepMaxFormula {
 class OneRepMaxFormulaLombardi @Inject constructor() : OneRepMaxFormula {
 
     override fun oneRepKg(weight: Kg, repeat: Int): Kg {
+        if (weight <= 0 || repeat <= 0) return 0.0
+
         return 100 * repeat.toDouble().pow(0.1)
     }
 }
