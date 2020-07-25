@@ -11,7 +11,9 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.greedy0110.powerruler.databinding.ActivityOneRepMaxBinding
 import com.greedy0110.powerruler.databinding.ItemOnerepWorkoutBinding
+import com.greedy0110.powerruler.feature.onerep.update.UpdateDialogFragment
 import dagger.hilt.android.AndroidEntryPoint
+import timber.log.Timber
 
 @AndroidEntryPoint
 class OneRepMaxActivity : AppCompatActivity() {
@@ -75,6 +77,12 @@ class OneRepMaxActivity : AppCompatActivity() {
         fun onBind(item: OneRepMaxViewModel.ItemHolder) {
             binding.viewModel = viewModel
             binding.workout = item.workout
+
+            binding.root.setOnClickListener {
+                UpdateDialogFragment.Builder(item.workout)
+                    .setOnConfirmButton { Timber.d("${item.workout} 클릭") }
+                    .show(supportFragmentManager)
+            }
         }
     }
 
