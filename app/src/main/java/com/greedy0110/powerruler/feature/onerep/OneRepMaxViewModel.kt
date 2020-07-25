@@ -5,7 +5,7 @@ import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.liveData
+import androidx.lifecycle.map
 import com.greedy0110.powerruler.R
 import com.greedy0110.powerruler.usecase.OneRepFormulaUseCase
 import com.greedy0110.powerruler.usecase.OneRepFormulaUseCase.Workout
@@ -35,26 +35,37 @@ class OneRepMaxViewModel @ViewModelInject constructor(
         }
     }
 
-    val unit: LiveData<String> = MutableLiveData("kg")
+    private val refreshTrigger = MutableLiveData<Boolean>(true)
 
-    val goal: LiveData<String> = liveData {
-        emit("/${userSettingUseCase.getGoal()?.toInt()}")
-    }
+    val unit: LiveData<String> = refreshTrigger.map { "kg" }
 
-    val totalOneRep: LiveData<String> = liveData {
-        emit("${formulaUseCase.getOneRepMax().toInt()}")
-    }
+    val goal: LiveData<String> = refreshTrigger.map { "/${userSettingUseCase.getGoal()?.toInt()}" }
 
-    val items: LiveData<List<ItemHolder>> = MutableLiveData(
-        Workout.values().map { ItemHolder(it) }
-    )
+    val totalOneRep: LiveData<String> =
+        refreshTrigger.map { "${formulaUseCase.getOneRepMax().toInt()}" }
+
+    val items: LiveData<List<ItemHolder2>> =
+        refreshTrigger.map {
+            Workout.values().map { workout ->
+                ItemHolder2(
+                    name = when (workout) {
+                        Workout.DEAD_LIFT -> context.getString(R.string.dead_lift)
+                        Workout.SQUAT -> context.getString(R.string.squat)
+                        Workout.BENCH_PRESS -> context.getString(R.string.bench_press)
+                    },
+                    detail = "${formulaUseCase.getWeight(workout)
+                        ?.toInt()}${unit.value} ${formulaUseCase.getRepeat(workout)}rep",
+                    unit = unit.value.orEmpty(),
+                    onerep = "${formulaUseCase.getOneRepMaxBy(workout).toInt()}",
+                    workout = workout
+                )
+            }
+        }
 
     private val cachedOneRepBy = mutableMapOf<Workout, LiveData<String>>()
     fun getOneRepBy(workout: Workout): LiveData<String> {
         return cachedOneRepBy[workout] ?: kotlin.run {
-            val new = MutableLiveData(
-                "${formulaUseCase.getOneRepMaxBy(workout).toInt()}"
-            )
+            val new = refreshTrigger.map { "${formulaUseCase.getOneRepMaxBy(workout).toInt()}" }
             cachedOneRepBy[workout] = new
             new
         }
@@ -63,10 +74,10 @@ class OneRepMaxViewModel @ViewModelInject constructor(
     private val cachedWorkoutDetail = mutableMapOf<Workout, LiveData<String>>()
     fun getWorkoutDetail(workout: Workout): LiveData<String> {
         return cachedWorkoutDetail[workout] ?: kotlin.run {
-            val new = MutableLiveData(
+            val new = refreshTrigger.map {
                 "${formulaUseCase.getWeight(workout)
                     ?.toInt()}${unit.value} ${formulaUseCase.getRepeat(workout)}rep"
-            )
+            }
             cachedWorkoutDetail[workout] = new
             new
         }
@@ -75,17 +86,29 @@ class OneRepMaxViewModel @ViewModelInject constructor(
     private val cachedWorkoutName = mutableMapOf<Workout, LiveData<String>>()
     fun getWorkoutName(workout: Workout): LiveData<String> {
         return cachedWorkoutName[workout] ?: kotlin.run {
-            val new = MutableLiveData(
+            val new = refreshTrigger.map {
                 when (workout) {
                     Workout.DEAD_LIFT -> context.getString(R.string.dead_lift)
                     Workout.SQUAT -> context.getString(R.string.squat)
                     Workout.BENCH_PRESS -> context.getString(R.string.bench_press)
                 }
-            )
+            }
             cachedWorkoutName[workout] = new
             new
         }
     }
 
+    fun refresh() {
+        refreshTrigger.postValue(true)
+    }
+
     data class ItemHolder(val workout: Workout)
+
+    data class ItemHolder2(
+        val name: String,
+        val detail: String,
+        val unit: String,
+        val onerep: String,
+        val workout: Workout
+    )
 }

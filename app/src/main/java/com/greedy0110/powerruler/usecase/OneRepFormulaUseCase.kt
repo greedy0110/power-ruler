@@ -10,6 +10,9 @@ import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.runBlocking
 import javax.inject.Inject
 
+//WHAT: EverythingRepository 가 변경 되었는데, useCase 는 단발성으로 값을 얻음.
+// 따라서 Repository 의 변경이 최신 반영이 안됌.
+
 class OneRepFormulaUseCase @Inject constructor(
     @ApplicationContext private val context: Context,
     private val everythingRepository: EverythingRepository,
