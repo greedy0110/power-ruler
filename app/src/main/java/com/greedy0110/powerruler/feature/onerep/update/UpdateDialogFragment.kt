@@ -3,10 +3,13 @@ package com.greedy0110.powerruler.feature.onerep.update
 import android.app.Dialog
 import android.os.Bundle
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.FragmentManager
+import com.greedy0110.powerruler.R
 import com.greedy0110.powerruler.databinding.DialogUpdateOnerepBinding
+import com.greedy0110.powerruler.domain.toKgOrNull
 import com.greedy0110.powerruler.usecase.OneRepFormulaUseCase
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
@@ -24,7 +27,21 @@ class UpdateDialogFragment : DialogFragment() {
         return activity?.let {
             val binding = DialogUpdateOnerepBinding.inflate(layoutInflater, null, false)
 
-            binding.buttonConfirm.setOnClickListener { onConfirm() }
+            binding.buttonConfirm.setOnClickListener {
+                val weight = binding.editWeight.text.toKgOrNull()
+                val repeat = binding.editRepeat.text.toString().toIntOrNull()
+
+                if (weight == null || repeat == null) {
+                    Toast.makeText(context, R.string.system_needed, Toast.LENGTH_SHORT).show()
+                    return@setOnClickListener
+                }
+
+                oneRepFormulaUseCase.setWeight(workout, weight)
+                oneRepFormulaUseCase.setRepeat(workout, repeat)
+
+                onConfirm()
+                dismiss()
+            }
 
             binding.editWeight.setText(
                 oneRepFormulaUseCase.getWeight(workout)!!.toString(),

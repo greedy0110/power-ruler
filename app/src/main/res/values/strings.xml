@@ -6,4 +6,5 @@
     <string name="bench_press">BenchPress</string>
 
     <string name="system_error">system error</string>
+    <string name="system_needed">please fill all content</string>
 </resources>

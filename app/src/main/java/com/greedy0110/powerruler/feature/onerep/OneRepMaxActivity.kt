@@ -80,7 +80,10 @@ class OneRepMaxActivity : AppCompatActivity() {
 
             binding.root.setOnClickListener {
                 UpdateDialogFragment.Builder(item.workout)
-                    .setOnConfirmButton { Timber.d("${item.workout} 클릭") }
+                    .setOnConfirmButton {
+                        //TODO: 1RM 갱신
+                        Timber.d("${item.workout} 클릭")
+                    }
                     .show(supportFragmentManager)
             }
         }
