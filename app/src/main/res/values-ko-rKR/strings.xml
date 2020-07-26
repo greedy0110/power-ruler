@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="app_name">3대 기록기</string>
     <string name="dead_lift">데드리프트</string>
     <string name="squat">스쿼트</string>
     <string name="bench_press">벤치프레스</string>
