@@ -7,7 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.os.postDelayed
 import com.greedy0110.powerruler.databinding.ActivityRootBinding
 import com.greedy0110.powerruler.feature.init.InitActivity
-import com.greedy0110.powerruler.feature.init.OneRepFragment
+import com.greedy0110.powerruler.feature.onerep.OneRepMaxActivity
 import com.greedy0110.powerruler.usecase.UserSettingUseCase
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
@@ -29,19 +29,13 @@ class RootActivity : AppCompatActivity() {
 
             if (goal == null) {
                 startActivity(
-                    Intent(
-                        this,
-                        InitActivity::class.java
-                    )
+                    Intent(this, InitActivity::class.java)
                         .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
                         .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
                 )
             } else {
                 startActivity(
-                    Intent(
-                        this,
-                        OneRepFragment::class.java
-                    )
+                    Intent(this, OneRepMaxActivity::class.java)
                         .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
                         .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
                 )

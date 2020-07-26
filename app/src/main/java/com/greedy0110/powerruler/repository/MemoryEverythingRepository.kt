@@ -11,14 +11,6 @@ class MemoryEverythingRepository @Inject constructor() : EverythingRepository {
     private val repeatCache = mutableMapOf<WorkoutKey, Int>()
     private var goal: Kg? = null
 
-    override suspend fun getName(): String? {
-        TODO("Not yet implemented")
-    }
-
-    override suspend fun setName(name: String) {
-        TODO("Not yet implemented")
-    }
-
     override suspend fun getWeight(workout: WorkoutKey): Kg? {
         return weightCache[workout]
     }

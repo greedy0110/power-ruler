@@ -7,10 +7,6 @@ typealias WorkoutKey = String
 //WHAT: 개인 앱이니 하나로 ㅎ;
 interface EverythingRepository {
 
-    suspend fun getName(): String?
-
-    suspend fun setName(name: String)
-
     suspend fun getWeight(workout: WorkoutKey): Kg?
 
     suspend fun setWeight(workout: WorkoutKey, weight: Kg)

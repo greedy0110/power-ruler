@@ -9,14 +9,6 @@ class UserSettingUseCase @Inject constructor(
     private val everythingRepository: EverythingRepository
 ) {
 
-    fun setName(name: String) = runBlocking {
-        everythingRepository.setName(name)
-    }
-
-    fun getName(): String? = runBlocking {
-        everythingRepository.getName()
-    }
-
     fun setGoal(goal: Kg) = runBlocking {
         everythingRepository.setGoal(goal)
     }

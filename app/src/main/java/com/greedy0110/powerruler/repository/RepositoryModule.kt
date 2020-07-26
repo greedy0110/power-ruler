@@ -11,6 +11,6 @@ abstract class RepositoryModule {
 
     @Binds
     abstract fun bindsEverythingRepository(
-        everythingRepository: MemoryEverythingRepository
+        everythingRepository: PreferenceEverythingRepository
     ): EverythingRepository
 }
