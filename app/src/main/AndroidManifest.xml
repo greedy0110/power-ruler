@@ -23,6 +23,10 @@
         <activity
             android:name=".feature.onerep.OneRepMaxActivity"
             android:windowSoftInputMode="adjustPan" />
+
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="@string/admob_id" />
     </application>
 
 </manifest>

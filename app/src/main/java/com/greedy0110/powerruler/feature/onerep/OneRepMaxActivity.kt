@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.gms.ads.AdRequest
 import com.greedy0110.powerruler.databinding.ActivityOneRepMaxBinding
 import com.greedy0110.powerruler.databinding.ItemOnerepWorkoutBinding
 import com.greedy0110.powerruler.feature.onerep.update.UpdateDialogFragment
@@ -30,6 +31,7 @@ class OneRepMaxActivity : AppCompatActivity() {
         binding.viewModel = viewModel
 
         initList()
+        initAd()
     }
 
     private fun initList() {
@@ -43,6 +45,25 @@ class OneRepMaxActivity : AppCompatActivity() {
         viewModel.items.observe(this) {
             adapter.submitList(it)
         }
+    }
+
+    private fun initAd() {
+        binding.adView.loadAd(AdRequest.Builder().build())
+    }
+
+    override fun onResume() {
+        super.onResume()
+        binding.adView.resume()
+    }
+
+    override fun onPause() {
+        binding.adView.pause()
+        super.onPause()
+    }
+
+    override fun onDestroy() {
+        binding.adView.destroy()
+        super.onDestroy()
     }
 
     //region RecyclerView.
