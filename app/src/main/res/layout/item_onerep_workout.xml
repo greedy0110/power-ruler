@@ -7,7 +7,7 @@
 
         <variable
             name="itemHolder"
-            type="com.greedy0110.powerruler.feature.onerep.OneRepMaxViewModel.ItemHolder2" />
+            type="com.greedy0110.powerruler.feature.onerep.OneRepMaxViewModel.ItemHolder" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

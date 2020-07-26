@@ -34,7 +34,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:text="데드 리프트" />
+            tools:text="@string/dead_lift" />
 
         <TextView
             android:id="@+id/label_goal_sub"
@@ -43,7 +43,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
             android:layout_marginEnd="24dp"
-            android:text="중량과 반복을 입력하시오."
+            android:text="@string/workout_subtitle"
             android:textColor="@color/secondaryColor"
             android:textSize="12sp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -77,7 +77,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
-            android:text="Kg"
+            android:text="@string/unit_kg"
             android:textColor="@color/secondaryColor"
             android:textSize="22sp"
             app:layout_constraintBottom_toBottomOf="@id/edit_weight"
@@ -111,7 +111,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
-            android:text="Reps"
+            android:text="@string/unit_repeat"
             android:textColor="@color/secondaryColor"
             android:textSize="22sp"
             app:layout_constraintBottom_toBottomOf="@id/edit_repeat"

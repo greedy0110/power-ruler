@@ -1,13 +1,17 @@
 <resources>
-    <string name="app_name">PowerRuler</string>
-
+    <string name="app_name">1RM Recorder</string>
     <string name="dead_lift">DeadLift</string>
     <string name="squat">Squat</string>
     <string name="bench_press">BenchPress</string>
-
     <string name="system_error">system error</string>
     <string name="system_needed">please fill all content</string>
-
     <string name="next">next</string>
     <string name="start">start</string>
+    <string name="unit_kg" translatable="false">Kg</string>
+    <string name="unit_repeat" translatable="false">Reps</string>
+    <string name="splash_title">1RM Recorder</string>
+    <string name="splash_subtitle">Record &amp; Get Muscles</string>
+    <string name="goal_setting">Goal Setting</string>
+    <string name="goal_setting_subtitle">Please enter your target weight for big three lifts</string>
+    <string name="workout_subtitle">Please enter your weight and repetition.</string>
 </resources>

@@ -47,16 +47,16 @@ class OneRepMaxActivity : AppCompatActivity() {
 
     //region RecyclerView.
 
-    private inner class Adapter : ListAdapter<OneRepMaxViewModel.ItemHolder2, ViewHolder>(
-        object : DiffUtil.ItemCallback<OneRepMaxViewModel.ItemHolder2>() {
+    private inner class Adapter : ListAdapter<OneRepMaxViewModel.ItemHolder, ViewHolder>(
+        object : DiffUtil.ItemCallback<OneRepMaxViewModel.ItemHolder>() {
             override fun areItemsTheSame(
-                oldItem: OneRepMaxViewModel.ItemHolder2,
-                newItem: OneRepMaxViewModel.ItemHolder2
+                oldItem: OneRepMaxViewModel.ItemHolder,
+                newItem: OneRepMaxViewModel.ItemHolder
             ): Boolean = oldItem.name == newItem.name
 
             override fun areContentsTheSame(
-                oldItem: OneRepMaxViewModel.ItemHolder2,
-                newItem: OneRepMaxViewModel.ItemHolder2
+                oldItem: OneRepMaxViewModel.ItemHolder,
+                newItem: OneRepMaxViewModel.ItemHolder
             ): Boolean = oldItem == newItem
         }
     ) {
@@ -74,13 +74,12 @@ class OneRepMaxActivity : AppCompatActivity() {
         private val binding: ItemOnerepWorkoutBinding
     ) : RecyclerView.ViewHolder(binding.root) {
 
-        fun onBind(item: OneRepMaxViewModel.ItemHolder2) {
+        fun onBind(item: OneRepMaxViewModel.ItemHolder) {
             binding.itemHolder = item
 
             binding.root.setOnClickListener {
                 UpdateDialogFragment.Builder(item.workout)
                     .setOnConfirmButton {
-                        //TODO: 1RM 갱신
                         viewModel.refresh()
                         Timber.d("${item.workout} 클릭")
                     }

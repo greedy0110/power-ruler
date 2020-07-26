@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="dead_lift">데드리프트</string>
+    <string name="squat">스쿼트</string>
+    <string name="bench_press">벤치프레스</string>
+    <string name="system_error">시스템 에러가 발생했습니다.</string>
+    <string name="system_needed">필요한 모든 내용을 채워주세요.</string>
+    <string name="next">다음</string>
+    <string name="start">시작하기</string>
+    <string name="splash_title">3대 기록기</string>
+    <string name="splash_subtitle">기록 하고 성장하자.</string>
+    <string name="goal_setting">목표 설정</string>
+    <string name="goal_setting_subtitle">목표 3대 중량을 입력하시오.</string>
+    <string name="workout_subtitle">중량과 반복을 입력하시오.</string>
+</resources>
