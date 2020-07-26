@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "578939429693",
+    "firebase_url": "https://rm-recorder.firebaseio.com",
+    "project_id": "rm-recorder",
+    "storage_bucket": "rm-recorder.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:578939429693:android:a4f867de90e8cddbfb5b54",
+        "android_client_info": {
+          "package_name": "com.greedy0110.powerruler"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "578939429693-bdlq6q1u51704abpt8uvpsdvvnrsvfea.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.greedy0110.powerruler",
+            "certificate_hash": "9707797d3e884920e38eea4dca0af467af687511"
+          }
+        },
+        {
+          "client_id": "578939429693-og4g9p5c5k5ku9qe6fjuaav389pi99d8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAydeX81cXZDdK3-5CTZNVV1iHWYRQmv8s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "578939429693-og4g9p5c5k5ku9qe6fjuaav389pi99d8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
