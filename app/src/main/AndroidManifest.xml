@@ -22,7 +22,6 @@
         <activity
             android:name=".feature.onerep.OneRepMaxActivity"
             android:windowSoftInputMode="adjustPan" />
-        <activity android:name=".feature.main.MainActivity" />
     </application>
 
 </manifest>
