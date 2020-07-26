@@ -1,6 +1,7 @@
 package com.greedy0110.powerruler.usecase
 
 import android.content.Context
+import androidx.annotation.StringRes
 import com.greedy0110.powerruler.R
 import com.greedy0110.powerruler.domain.Kg
 import com.greedy0110.powerruler.domain.OneRepMaxFormula
@@ -50,9 +51,9 @@ class OneRepFormulaUseCase @Inject constructor(
             .sum()
     }
 
-    enum class Workout(val uniqueName: WorkoutKey) {
-        DEAD_LIFT("onerep_dead_lift"),
-        SQUAT("onerep_squat"),
-        BENCH_PRESS("onerep_bench_press")
+    enum class Workout(val uniqueName: WorkoutKey, @StringRes val stringResId: Int) {
+        DEAD_LIFT("onerep_dead_lift", R.string.dead_lift),
+        SQUAT("onerep_squat", R.string.squat),
+        BENCH_PRESS("onerep_bench_press", R.string.bench_press)
     }
 }

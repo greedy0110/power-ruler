@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="workout"
+            type="com.greedy0110.powerruler.usecase.OneRepFormulaUseCase.Workout" />
+
+        <variable
+            name="viewModel"
+            type="com.greedy0110.powerruler.feature.init.InitViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/background"
+        tools:context=".feature.init.GoalFragment">
+
+        <TextView
+            android:id="@+id/label_goal"
+            style="@style/TextStyle.BmEuljiro"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="36dp"
+            android:layout_marginEnd="24dp"
+            android:text="@{viewModel.getWorkoutName(workout)}"
+            android:textColor="@color/secondaryColor"
+            android:textSize="36sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="데드 리프트" />
+
+        <TextView
+            android:id="@+id/label_goal_sub"
+            style="@style/TextStyle.BmEuljiro"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="24dp"
+            android:text="중량과 반복을 입력하시오."
+            android:textColor="@color/secondaryColor"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@id/label_goal"
+            app:layout_constraintTop_toBottomOf="@id/label_goal" />
+
+        <EditText
+            android:id="@+id/edit_weight"
+            style="@style/TextStyle.BmEuljiro"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="24dp"
+            android:background="@drawable/background_edittext"
+            android:importantForAutofill="no"
+            android:inputType="numberDecimal"
+            android:maxLength="4"
+            android:onTextChanged="@{(s, start, before, count) -> viewModel.setWorkoutWeight(workout, s.toString())}"
+            android:padding="12dp"
+            android:text="@={viewModel.goal}"
+            android:textColor="@color/secondaryColor"
+            android:textSize="24sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/label_goal_sub"
+            tools:text="100" />
+
+        <TextView
+            android:id="@+id/text_unit"
+            style="@style/TextStyle.BmEuljiro"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:text="Kg"
+            android:textColor="@color/secondaryColor"
+            android:textSize="22sp"
+            app:layout_constraintBottom_toBottomOf="@id/edit_weight"
+            app:layout_constraintEnd_toEndOf="@id/edit_weight"
+            app:layout_constraintTop_toTopOf="@id/edit_weight" />
+
+        <EditText
+            android:id="@+id/edit_repeat"
+            style="@style/TextStyle.BmEuljiro"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="14dp"
+            android:layout_marginEnd="24dp"
+            android:background="@drawable/background_edittext"
+            android:importantForAutofill="no"
+            android:inputType="numberDecimal"
+            android:maxLength="2"
+            android:onTextChanged="@{(s, start, before, count) -> viewModel.setWorkoutRepeat(workout, s.toString())}"
+            android:padding="12dp"
+            android:text="@={viewModel.goal}"
+            android:textColor="@color/secondaryColor"
+            android:textSize="24sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/edit_weight"
+            tools:text="12" />
+
+        <TextView
+            android:id="@+id/label_repeat"
+            style="@style/TextStyle.BmEuljiro"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:text="Reps"
+            android:textColor="@color/secondaryColor"
+            android:textSize="22sp"
+            app:layout_constraintBottom_toBottomOf="@id/edit_repeat"
+            app:layout_constraintEnd_toEndOf="@id/edit_repeat"
+            app:layout_constraintTop_toTopOf="@id/edit_repeat" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
