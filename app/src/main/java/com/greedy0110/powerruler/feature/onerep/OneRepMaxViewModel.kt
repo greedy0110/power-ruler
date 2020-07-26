@@ -19,22 +19,6 @@ class OneRepMaxViewModel @ViewModelInject constructor(
     private val formulaUseCase: OneRepFormulaUseCase
 ) : ViewModel() {
 
-    init {
-
-        runBlocking {
-            userSettingUseCase.setGoal(500.0)
-
-            formulaUseCase.setWeight(Workout.DEAD_LIFT, 140.0)
-            formulaUseCase.setRepeat(Workout.DEAD_LIFT, 2)
-
-            formulaUseCase.setWeight(Workout.SQUAT, 100.0)
-            formulaUseCase.setRepeat(Workout.SQUAT, 10)
-
-            formulaUseCase.setWeight(Workout.BENCH_PRESS, 80.0)
-            formulaUseCase.setRepeat(Workout.BENCH_PRESS, 10)
-        }
-    }
-
     private val refreshTrigger = MutableLiveData<Boolean>(true)
 
     val unit: LiveData<String> = refreshTrigger.map { "kg" }

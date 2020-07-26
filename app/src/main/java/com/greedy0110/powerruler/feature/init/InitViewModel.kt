@@ -7,11 +7,11 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.map
 import com.greedy0110.powerruler.R
-import com.greedy0110.powerruler.domain.Kg
 import com.greedy0110.powerruler.domain.toKgOrNull
 import com.greedy0110.powerruler.usecase.OneRepFormulaUseCase
 import com.greedy0110.powerruler.usecase.UserSettingUseCase
 import dagger.hilt.android.qualifiers.ApplicationContext
+import timber.log.Timber
 
 class InitViewModel @ViewModelInject constructor(
     @ApplicationContext private val appContext: Context,
@@ -23,44 +23,44 @@ class InitViewModel @ViewModelInject constructor(
     val signal: LiveData<InitSignal> = _signal
 
     val goal = MutableLiveData<String>()
-    private val _confirmText: MutableLiveData<String> =
-        MutableLiveData(appContext.getString(R.string.next))
-    val confirmText: LiveData<String> = _confirmText
-    val confirmEnabled = goal.map { it.isNotBlank() }
 
     private val _currentWorkout: MutableLiveData<OneRepFormulaUseCase.Workout?> =
         MutableLiveData(null)
-    val currentWorkout: LiveData<OneRepFormulaUseCase.Workout?> = _currentWorkout
+    val workoutName = _currentWorkout.map { appContext.getString(it?.stringResId ?: 0) }
 
-    private val cachedWeight: MutableMap<OneRepFormulaUseCase.Workout, Kg> =
-        OneRepFormulaUseCase.Workout.values().map { Pair(it, 0.0) }.toMap().toMutableMap()
+    val confirmText: LiveData<String> = _currentWorkout.map {
+        appContext.getString(
+            if (it == OneRepFormulaUseCase.Workout.BENCH_PRESS) R.string.start else R.string.next
+        )
+    }
+    val confirmEnabled = goal.map { it.isNotBlank() }
 
-    private val cachedRepeat: MutableMap<OneRepFormulaUseCase.Workout, Int> =
-        OneRepFormulaUseCase.Workout.values().map { Pair(it, 0) }.toMap().toMutableMap()
+    private val edits = mutableMapOf<
+            OneRepFormulaUseCase.Workout,
+            Pair<MutableLiveData<String>, MutableLiveData<String>>
+            >(
+        OneRepFormulaUseCase.Workout.DEAD_LIFT to (MutableLiveData("") to MutableLiveData("")),
+        OneRepFormulaUseCase.Workout.SQUAT to (MutableLiveData("") to MutableLiveData("")),
+        OneRepFormulaUseCase.Workout.BENCH_PRESS to (MutableLiveData("") to MutableLiveData(""))
+    )
 
-    fun getWorkoutName(workout: OneRepFormulaUseCase.Workout): String {
-        return appContext.getString(workout.stringResId)
+    fun getWeight(workout: OneRepFormulaUseCase.Workout): MutableLiveData<String> {
+        return edits[workout]!!.first
     }
 
-    fun setWorkoutWeight(workout: OneRepFormulaUseCase.Workout, weightCandidate: String) {
-        val weight = weightCandidate.toKgOrNull() ?: return
-        cachedWeight[workout] = weight
-    }
-
-    fun setWorkoutRepeat(workout: OneRepFormulaUseCase.Workout, repeatCandidate: String) {
-        val repeat = repeatCandidate.toIntOrNull() ?: return
-        cachedRepeat[workout] = repeat
+    fun getRepeat(workout: OneRepFormulaUseCase.Workout): MutableLiveData<String> {
+        return edits[workout]!!.second
     }
 
     fun setWorkout(workout: OneRepFormulaUseCase.Workout) {
-        _currentWorkout.postValue(workout)
+        _currentWorkout.value = workout
     }
 
     // 다음 버튼 누를 때마다, 상태에 따라서 다른 행동을 해야함.
     // 다음 버튼은 상태에 따라서 시작하기 텍스트를 보여 줘야함.
     // 다음 버튼을 누를 때, 캐시에 있는 값을 실제 값으로 세팅해주어야한다.
     fun next() {
-        val workout = currentWorkout.value
+        val workout = _currentWorkout.value
 
         save()
         _signal.postValue(
@@ -75,24 +75,20 @@ class InitViewModel @ViewModelInject constructor(
                     InitSignal.StartSignal
             }
         )
-
-        _confirmText.postValue(
-            appContext.getString(
-                if (workout == OneRepFormulaUseCase.Workout.BENCH_PRESS) R.string.start else R.string.next
-            )
-        )
     }
 
     private fun save() {
-        val goalKg = goal.toKgOrNull() ?: return
+        val goalKg = goal.value.toKgOrNull() ?: return
         userSettingUseCase.setGoal(goalKg)
 
-        for ((workout, kg) in cachedWeight) {
-            oneRepFormulaUseCase.setWeight(workout, kg)
-        }
+        for ((workout, value) in edits) {
+            val weight = value.first.value.toKgOrNull() ?: 0.0
+            val repeat = value.second.value?.toIntOrNull() ?: 0
 
-        for ((workout, repeat) in cachedRepeat) {
+            oneRepFormulaUseCase.setWeight(workout, weight)
             oneRepFormulaUseCase.setRepeat(workout, repeat)
+
+            Timber.d("save $workout $weight kg $repeat reps")
         }
     }
 }
