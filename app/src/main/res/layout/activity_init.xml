@@ -28,10 +28,12 @@
             android:layout_height="62dp"
             android:backgroundTint="@color/selector_button_tint"
             android:enabled="@{viewModel.confirmEnabled}"
-            android:text="다음"
+            android:onClick="@{() -> viewModel.next()}"
+            android:text="@{viewModel.confirmText}"
             android:textSize="24sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            tools:text="@string/next" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

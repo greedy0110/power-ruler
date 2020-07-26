@@ -14,7 +14,7 @@ private const val ARG_WORKOUT_ENUM_ORDINAL = "WORKOUT_ENUM"
 
 @AndroidEntryPoint
 class OneRepFragment : Fragment() {
-    private var workout: OneRepFormulaUseCase.Workout? = null
+    private lateinit var workout: OneRepFormulaUseCase.Workout
     private lateinit var binding: FragmentOneRepBinding
     private val viewModel: InitViewModel by activityViewModels()
 
@@ -33,6 +33,9 @@ class OneRepFragment : Fragment() {
 
         binding.lifecycleOwner = viewLifecycleOwner
         binding.viewModel = viewModel
+        binding.workout = workout
+
+        viewModel.setWorkout(workout)
 
         return binding.root
     }
