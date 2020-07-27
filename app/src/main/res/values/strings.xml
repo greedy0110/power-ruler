@@ -14,5 +14,9 @@
     <string name="goal_setting">Goal Setting</string>
     <string name="goal_setting_subtitle">Please enter your target weight for big three lifts</string>
     <string name="workout_subtitle">Please enter your weight and repetition.</string>
-    <string name="update">update</string>
+    <string name="upgrade_onerep_button">update</string>
+    <string name="downgrade_onerep_button">update</string>
+    <string name="onerep_max_prev">Expected 1RM: %1$s%2$s</string>
+    <string name="onerep_upgrade">Up %1$s%2$s 💪</string>
+    <string name="onerep_downgrade">Down %1$s%2$s 🧐</string>
 </resources>

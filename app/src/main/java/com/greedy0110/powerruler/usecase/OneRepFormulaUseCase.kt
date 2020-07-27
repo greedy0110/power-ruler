@@ -51,6 +51,10 @@ class OneRepFormulaUseCase @Inject constructor(
             .sum()
     }
 
+    fun getOneRepMaxPreview(weight: Kg, repeat: Int): Kg {
+        return oneRepMaxFormula.oneRepKg(weight, repeat)
+    }
+
     enum class Workout(val uniqueName: WorkoutKey, @StringRes val stringResId: Int) {
         DEAD_LIFT("onerep_dead_lift", R.string.dead_lift),
         SQUAT("onerep_squat", R.string.squat),

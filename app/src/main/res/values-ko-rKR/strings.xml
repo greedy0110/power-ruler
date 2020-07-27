@@ -13,5 +13,9 @@
     <string name="goal_setting">목표 설정</string>
     <string name="goal_setting_subtitle">목표 3대 중량을 입력하시오.</string>
     <string name="workout_subtitle">중량과 반복을 입력하시오.</string>
-    <string name="update">증량하기</string>
+    <string name="upgrade_onerep_button">증량하기</string>
+    <string name="downgrade_onerep_button">변경하기</string>
+    <string name="onerep_max_prev">예상 1RM -> %1$s%2$s</string>
+    <string name="onerep_upgrade">1RM %1$s%2$s 증가! 💪</string>
+    <string name="onerep_downgrade">1RM %1$s%2$s 감소 🧐</string>
 </resources>
