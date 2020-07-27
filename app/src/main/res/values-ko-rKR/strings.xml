@@ -18,4 +18,6 @@
     <string name="onerep_max_prev">예상 1RM -> %1$s%2$s</string>
     <string name="onerep_upgrade">1RM %1$s%2$s 증가! 💪</string>
     <string name="onerep_downgrade">1RM %1$s%2$s 감소 🧐</string>
+    <string name="settings">설정</string>
+    <string name="update">변경하기</string>
 </resources>
