@@ -12,7 +12,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:background="@drawable/background_update_dialog">
 
         <TextView
@@ -101,12 +101,41 @@
             app:layout_constraintEnd_toEndOf="@id/edit_repeat"
             app:layout_constraintTop_toTopOf="@id/edit_repeat" />
 
+        <TextView
+            android:id="@+id/text_onerep_max_preview"
+            style="@style/TextStyle.BmEuljiro"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="18dp"
+            android:gravity="center"
+            android:text="예상 1RM -> 145kg"
+            android:textColor="@color/primaryTextColor"
+            android:textSize="24sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/edit_repeat" />
+
+        <TextView
+            android:id="@+id/text_cheer_up"
+            style="@style/TextStyle.BmEuljiro"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="18dp"
+            android:gravity="center"
+            android:text="1RM 5kg 증가!"
+            android:textColor="@color/primaryTextColor"
+            android:textSize="24sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/text_onerep_max_preview" />
+
         <Button
             android:id="@+id/button_confirm"
             style="@style/TextStyle.BmEuljiro"
             android:layout_width="0dp"
             android:layout_height="52dp"
             android:layout_marginStart="14dp"
+            android:layout_marginTop="66dp"
             android:layout_marginEnd="14dp"
             android:layout_marginBottom="26dp"
             android:backgroundTint="@color/selector_button_tint"
@@ -117,6 +146,6 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/edit_repeat" />
+            app:layout_constraintTop_toBottomOf="@id/text_cheer_up" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
