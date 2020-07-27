@@ -14,4 +14,5 @@
     <string name="goal_setting">Goal Setting</string>
     <string name="goal_setting_subtitle">Please enter your target weight for big three lifts</string>
     <string name="workout_subtitle">Please enter your weight and repetition.</string>
+    <string name="update">update</string>
 </resources>

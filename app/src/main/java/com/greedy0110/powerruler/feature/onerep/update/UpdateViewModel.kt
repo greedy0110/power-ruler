@@ -8,7 +8,9 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.map
 import com.greedy0110.powerruler.domain.toKgOrNull
 import com.greedy0110.powerruler.usecase.OneRepFormulaUseCase
+import com.greedy0110.powerruler.util.combineLiveData4
 import dagger.hilt.android.qualifiers.ApplicationContext
+import timber.log.Timber
 
 class UpdateViewModel @ViewModelInject constructor(
     @ApplicationContext private val appContext: Context,
@@ -28,6 +30,11 @@ class UpdateViewModel @ViewModelInject constructor(
 
     val currentWeight: MutableLiveData<String> = MutableLiveData("")
     val currentRepeat: MutableLiveData<String> = MutableLiveData("")
+
+    val updateEnabled = combineLiveData4(weight, currentWeight, reps, currentRepeat)
+        .map { (preW, curW, preR, curR) ->
+            preW != curW || preR != curR
+        }
 
     private val _signal: MutableLiveData<UpdateSignal> = MutableLiveData()
     val signal: LiveData<UpdateSignal> = _signal

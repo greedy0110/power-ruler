@@ -13,4 +13,5 @@
     <string name="goal_setting">목표 설정</string>
     <string name="goal_setting_subtitle">목표 3대 중량을 입력하시오.</string>
     <string name="workout_subtitle">중량과 반복을 입력하시오.</string>
+    <string name="update">증량하기</string>
 </resources>
