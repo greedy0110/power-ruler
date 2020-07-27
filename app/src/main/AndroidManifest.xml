@@ -10,6 +10,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".feature.settings.SettingsActivity" />
+        <activity
+            android:name=".feature.init.InitActivity"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".feature.onerep.OneRepMaxActivity"
+            android:windowSoftInputMode="adjustPan" />
         <activity android:name=".feature.root.RootActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -17,12 +24,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".feature.init.InitActivity"
-            android:windowSoftInputMode="adjustResize" />
-        <activity
-            android:name=".feature.onerep.OneRepMaxActivity"
-            android:windowSoftInputMode="adjustPan" />
 
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"

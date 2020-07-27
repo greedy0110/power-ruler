@@ -1,5 +1,7 @@
 package com.greedy0110.powerruler.feature.onerep
 
+import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import android.view.ViewGroup
 import androidx.activity.viewModels
@@ -13,6 +15,7 @@ import com.google.android.gms.ads.AdRequest
 import com.greedy0110.powerruler.databinding.ActivityOneRepMaxBinding
 import com.greedy0110.powerruler.databinding.ItemOnerepWorkoutBinding
 import com.greedy0110.powerruler.feature.onerep.update.UpdateDialogFragment
+import com.greedy0110.powerruler.feature.settings.SettingsActivity
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
 
@@ -29,6 +32,17 @@ class OneRepMaxActivity : AppCompatActivity() {
 
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
+
+        viewModel.signal.observe(this) {
+            when (it) {
+                is OneRepMaxSignal.GoSettingSignal -> {
+                    startActivityForResult(
+                        Intent(this, SettingsActivity::class.java),
+                        REQUEST_CODE
+                    )
+                }
+            }
+        }
 
         initList()
         initAd()
@@ -64,6 +78,15 @@ class OneRepMaxActivity : AppCompatActivity() {
     override fun onDestroy() {
         binding.adView.destroy()
         super.onDestroy()
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        when (requestCode) {
+            REQUEST_CODE -> {
+                if (resultCode == Activity.RESULT_OK) viewModel.refresh()
+            }
+        }
     }
 
     //region RecyclerView.
@@ -110,4 +133,8 @@ class OneRepMaxActivity : AppCompatActivity() {
     }
 
     //endregion
+
+    companion object {
+        private const val REQUEST_CODE = 1010
+    }
 }

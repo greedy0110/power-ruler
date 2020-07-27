@@ -24,6 +24,7 @@
             android:layout_marginTop="24dp"
             android:layout_marginEnd="12dp"
             android:contentDescription="go to settings screen"
+            android:onClick="@{() -> viewModel.goSettings()}"
             android:padding="6dp"
             android:src="@drawable/ic_settings"
             android:tint="@color/secondaryColor"

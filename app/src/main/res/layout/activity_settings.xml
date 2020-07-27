@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.greedy0110.powerruler.feature.settings.SettingsViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/background"
+        tools:context=".feature.settings.SettingsActivity">
+
+        <TextView
+            android:id="@+id/label_title"
+            style="@style/TextStyle.BmEuljiro"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="36dp"
+            android:layout_marginEnd="24dp"
+            android:text="설정"
+            android:textColor="@color/secondaryColor"
+            android:textSize="36sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/edit_goal"
+            style="@style/TextStyle.BmEuljiro"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="24dp"
+            android:background="@drawable/background_edittext"
+            android:hint="@{viewModel.goal}"
+            android:importantForAutofill="no"
+            android:inputType="numberDecimal"
+            android:maxLength="4"
+            android:padding="12dp"
+            android:text="@={viewModel.currentGoal}"
+            android:textColor="@color/secondaryColor"
+            android:textColorHint="@color/secondaryDarkColor"
+            android:textSize="24sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/label_title"
+            tools:text="500" />
+
+        <TextView
+            android:id="@+id/text_unit"
+            style="@style/TextStyle.BmEuljiro"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:text="@string/unit_kg"
+            android:textColor="@color/secondaryColor"
+            android:textSize="22sp"
+            app:layout_constraintBottom_toBottomOf="@id/edit_goal"
+            app:layout_constraintEnd_toEndOf="@id/edit_goal"
+            app:layout_constraintTop_toTopOf="@id/edit_goal" />
+
+        <TextView
+            android:id="@+id/sub_label_goal"
+            style="@style/TextStyle.BmEuljiro"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="24dp"
+            android:text="@string/goal_setting_subtitle"
+            android:textColor="@color/secondaryColor"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@id/edit_goal"
+            app:layout_constraintTop_toBottomOf="@id/edit_goal" />
+
+        <Button
+            android:id="@+id/button_confirm"
+            style="@style/TextStyle.BmEuljiro"
+            android:layout_width="0dp"
+            android:layout_height="62dp"
+            android:backgroundTint="@color/selector_button_tint"
+            android:onClick="@{() -> viewModel.update()}"
+            android:text="변경하기"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

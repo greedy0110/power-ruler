@@ -47,8 +47,15 @@ class OneRepMaxViewModel @ViewModelInject constructor(
             }
         }
 
+    private val _signal: MutableLiveData<OneRepMaxSignal> = MutableLiveData()
+    val signal: LiveData<OneRepMaxSignal> = _signal
+
     fun refresh() {
         refreshTrigger.postValue(true)
+    }
+
+    fun goSettings() {
+        _signal.value = OneRepMaxSignal.GoSettingSignal
     }
 
     data class ItemHolder(
