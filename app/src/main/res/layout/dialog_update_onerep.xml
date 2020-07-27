@@ -1,65 +1,105 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
+        <variable
+            name="viewModel"
+            type="com.greedy0110.powerruler.feature.onerep.update.UpdateViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/background_update_dialog">
 
         <TextView
-            android:id="@+id/label_weight"
-            style="@style/TextStyle.PlexBold"
+            android:id="@+id/text_workout"
+            style="@style/TextStyle.BmEuljiro"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="무게"
-            app:layout_constraintEnd_toStartOf="@id/edit_weight"
-            app:layout_constraintHorizontal_chainStyle="packed"
+            android:layout_marginTop="16dp"
+            android:text="@{viewModel.workoutName}"
+            android:textColor="@color/primaryTextColor"
+            android:textSize="36sp"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="@string/dead_lift" />
 
         <EditText
             android:id="@+id/edit_weight"
-            android:layout_width="200dp"
+            style="@style/TextStyle.BmEuljiro"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:background="@null"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="26dp"
+            android:layout_marginEnd="16dp"
+            android:background="@drawable/background_edittext"
+            android:hint="@{viewModel.weight}"
             android:importantForAutofill="no"
-            android:inputType="numberSigned"
-            android:labelFor="@id/edit_weight"
-            app:layout_constraintBottom_toBottomOf="@id/label_weight"
+            android:inputType="numberDecimal"
+            android:maxLength="4"
+            android:padding="12dp"
+            android:text="@={viewModel.currentWeight}"
+            android:textColor="@color/secondaryColor"
+            android:textColorHint="@color/secondaryDarkColor"
+            android:textSize="24sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/label_weight"
-            app:layout_constraintTop_toTopOf="@id/label_weight" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/text_workout"
+            tools:text="100" />
 
         <TextView
-            android:id="@+id/label_repeat"
-            style="@style/TextStyle.PlexBold"
+            android:id="@+id/text_unit"
+            style="@style/TextStyle.BmEuljiro"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
-            android:layout_marginBottom="32dp"
-            android:text="반복"
-            app:layout_constraintBottom_toTopOf="@id/button_confirm"
-            app:layout_constraintEnd_toStartOf="@id/edit_repeat"
-            app:layout_constraintHorizontal_chainStyle="packed"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/label_weight" />
+            android:layout_marginEnd="16dp"
+            android:text="@string/unit_kg"
+            android:textColor="@color/secondaryColor"
+            android:textSize="22sp"
+            app:layout_constraintBottom_toBottomOf="@id/edit_weight"
+            app:layout_constraintEnd_toEndOf="@id/edit_weight"
+            app:layout_constraintTop_toTopOf="@id/edit_weight" />
 
         <EditText
             android:id="@+id/edit_repeat"
-            android:layout_width="200dp"
+            style="@style/TextStyle.BmEuljiro"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:background="@null"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="14dp"
+            android:layout_marginEnd="16dp"
+            android:background="@drawable/background_edittext"
+            android:hint="@{viewModel.reps}"
             android:importantForAutofill="no"
             android:inputType="numberDecimal"
-            android:labelFor="@id/label_repeat"
-            app:layout_constraintBottom_toBottomOf="@id/label_repeat"
+            android:maxLength="2"
+            android:padding="12dp"
+            android:text="@={viewModel.currentRepeat}"
+            android:textColor="@color/secondaryColor"
+            android:textColorHint="@color/secondaryDarkColor"
+            android:textSize="24sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/label_repeat"
-            app:layout_constraintTop_toTopOf="@id/label_repeat" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/edit_weight"
+            tools:hint="12" />
+
+        <TextView
+            android:id="@+id/label_repeat"
+            style="@style/TextStyle.BmEuljiro"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:text="@string/unit_repeat"
+            android:textColor="@color/secondaryColor"
+            android:textSize="22sp"
+            app:layout_constraintBottom_toBottomOf="@id/edit_repeat"
+            app:layout_constraintEnd_toEndOf="@id/edit_repeat"
+            app:layout_constraintTop_toTopOf="@id/edit_repeat" />
 
         <Button
             android:id="@+id/button_confirm"
@@ -68,6 +108,7 @@
             android:text="변경하기"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/edit_repeat" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

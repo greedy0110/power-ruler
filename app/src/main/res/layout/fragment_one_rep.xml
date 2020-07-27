@@ -21,7 +21,7 @@
         tools:context=".feature.init.GoalFragment">
 
         <TextView
-            android:id="@+id/label_goal"
+            android:id="@+id/text_workout"
             style="@style/TextStyle.BmEuljiro"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -37,7 +37,7 @@
             tools:text="@string/dead_lift" />
 
         <TextView
-            android:id="@+id/label_goal_sub"
+            android:id="@+id/label_workout_sub"
             style="@style/TextStyle.BmEuljiro"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -47,8 +47,8 @@
             android:textColor="@color/secondaryColor"
             android:textSize="12sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@id/label_goal"
-            app:layout_constraintTop_toBottomOf="@id/label_goal" />
+            app:layout_constraintStart_toStartOf="@id/text_workout"
+            app:layout_constraintTop_toBottomOf="@id/text_workout" />
 
         <EditText
             android:id="@+id/edit_weight"
@@ -68,7 +68,7 @@
             android:textSize="24sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/label_goal_sub"
+            app:layout_constraintTop_toBottomOf="@id/label_workout_sub"
             tools:text="100" />
 
         <TextView

@@ -2,11 +2,11 @@ package com.greedy0110.powerruler.feature.onerep.update
 
 import android.app.Dialog
 import android.os.Bundle
-import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.viewModels
 import com.greedy0110.powerruler.R
 import com.greedy0110.powerruler.databinding.DialogUpdateOnerepBinding
 import com.greedy0110.powerruler.domain.toKgOrNull
@@ -16,6 +16,8 @@ import javax.inject.Inject
 
 @AndroidEntryPoint
 class UpdateDialogFragment : DialogFragment() {
+
+    private val viewModel: UpdateViewModel by viewModels()
 
     @Inject
     lateinit var oneRepFormulaUseCase: OneRepFormulaUseCase
@@ -43,14 +45,10 @@ class UpdateDialogFragment : DialogFragment() {
                 dismiss()
             }
 
-            binding.editWeight.setText(
-                oneRepFormulaUseCase.getWeight(workout)!!.toString(),
-                TextView.BufferType.EDITABLE
-            )
-            binding.editRepeat.setText(
-                oneRepFormulaUseCase.getRepeat(workout)!!.toString(),
-                TextView.BufferType.EDITABLE
-            )
+            binding.lifecycleOwner = this
+            binding.viewModel = viewModel
+
+            viewModel.setWorkout(workout)
 
             return AlertDialog.Builder(it)
                 .setView(binding.root)
