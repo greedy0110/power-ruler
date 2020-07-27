@@ -6,6 +6,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.map
+import com.greedy0110.powerruler.domain.toKgOrNull
 import com.greedy0110.powerruler.usecase.OneRepFormulaUseCase
 import dagger.hilt.android.qualifiers.ApplicationContext
 
@@ -28,7 +29,24 @@ class UpdateViewModel @ViewModelInject constructor(
     val currentWeight: MutableLiveData<String> = MutableLiveData("")
     val currentRepeat: MutableLiveData<String> = MutableLiveData("")
 
+    private val _signal: MutableLiveData<UpdateSignal> = MutableLiveData()
+    val signal: LiveData<UpdateSignal> = _signal
+
     fun setWorkout(workout: OneRepFormulaUseCase.Workout) {
         _workout.value = workout
+    }
+
+    fun update() {
+        val workout = _workout.value
+        requireNotNull(workout)
+
+        val weight = currentWeight.value.toKgOrNull() ?: weight.value.toKgOrNull() ?: 0.0
+        val repeat =
+            currentRepeat.value.toString().toIntOrNull() ?: reps.value.toString().toIntOrNull() ?: 0
+
+        oneRepFormulaUseCase.setWeight(workout, weight)
+        oneRepFormulaUseCase.setRepeat(workout, repeat)
+
+        _signal.value = UpdateSignal.CompleteSignal
     }
 }
