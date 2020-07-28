@@ -14,10 +14,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.gms.ads.AdRequest
 import com.greedy0110.powerruler.databinding.ActivityOneRepMaxBinding
 import com.greedy0110.powerruler.databinding.ItemOnerepWorkoutBinding
+import com.greedy0110.powerruler.feature.ad.AdDialogFragment
 import com.greedy0110.powerruler.feature.onerep.update.UpdateDialogFragment
 import com.greedy0110.powerruler.feature.settings.SettingsActivity
 import dagger.hilt.android.AndroidEntryPoint
-import timber.log.Timber
 
 @AndroidEntryPoint
 class OneRepMaxActivity : AppCompatActivity() {
@@ -125,7 +125,12 @@ class OneRepMaxActivity : AppCompatActivity() {
                 UpdateDialogFragment.Builder(item.workout)
                     .setOnConfirmButton {
                         viewModel.refresh()
-                        Timber.d("${item.workout} 클릭")
+
+                        if (viewModel.needShowAd()) {
+                            AdDialogFragment.Builder()
+                                .show(supportFragmentManager)
+                            viewModel.showAd()
+                        }
                     }
                     .show(supportFragmentManager)
             }

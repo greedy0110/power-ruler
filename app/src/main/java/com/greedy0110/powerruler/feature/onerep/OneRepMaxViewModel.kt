@@ -58,6 +58,14 @@ class OneRepMaxViewModel @ViewModelInject constructor(
         _signal.value = OneRepMaxSignal.GoSettingSignal
     }
 
+    fun needShowAd(): Boolean {
+        return userSettingUseCase.needShowAd()
+    }
+
+    fun showAd() {
+        userSettingUseCase.showAd()
+    }
+
     data class ItemHolder(
         val name: String,
         val detail: String,

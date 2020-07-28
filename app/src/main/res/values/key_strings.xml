@@ -4,4 +4,5 @@
     <string name="admob_id" translatable="false">ca-app-pub-6922047795847908~4577973529</string>
 
     <string name="admob_main_banner_id" translatable="false">ca-app-pub-6922047795847908/3452594115</string>
+    <string name="admob_main_native_id" translatable="false">ca-app-pub-6922047795847908/6965475472</string>
 </resources>

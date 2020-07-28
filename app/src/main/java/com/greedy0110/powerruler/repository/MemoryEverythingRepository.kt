@@ -10,6 +10,7 @@ class MemoryEverythingRepository @Inject constructor() : EverythingRepository {
     private val weightCache = mutableMapOf<WorkoutKey, Kg>()
     private val repeatCache = mutableMapOf<WorkoutKey, Int>()
     private var goal: Kg? = null
+    private var time: Long = 0
 
     override suspend fun getWeight(workout: WorkoutKey): Kg? {
         return weightCache[workout]
@@ -33,5 +34,13 @@ class MemoryEverythingRepository @Inject constructor() : EverythingRepository {
 
     override suspend fun setGoal(goal: Kg) {
         this.goal = goal
+    }
+
+    override suspend fun setAdNotice(time: Long) {
+        this.time = time
+    }
+
+    override suspend fun getAdNotice(): Long {
+        return time
     }
 }

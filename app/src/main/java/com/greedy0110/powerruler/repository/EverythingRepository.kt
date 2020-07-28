@@ -18,4 +18,8 @@ interface EverythingRepository {
     suspend fun getGoal(): Kg?
 
     suspend fun setGoal(goal: Kg)
+
+    suspend fun setAdNotice(time: Long)
+
+    suspend fun getAdNotice(): Long
 }

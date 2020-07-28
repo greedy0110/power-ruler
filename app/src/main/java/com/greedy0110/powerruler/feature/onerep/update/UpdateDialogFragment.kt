@@ -10,15 +10,11 @@ import androidx.lifecycle.observe
 import com.greedy0110.powerruler.databinding.DialogUpdateOnerepBinding
 import com.greedy0110.powerruler.usecase.OneRepFormulaUseCase
 import dagger.hilt.android.AndroidEntryPoint
-import javax.inject.Inject
 
 @AndroidEntryPoint
 class UpdateDialogFragment : DialogFragment() {
 
     private val viewModel: UpdateViewModel by viewModels()
-
-    @Inject
-    lateinit var oneRepFormulaUseCase: OneRepFormulaUseCase
 
     lateinit var onComplete: () -> Unit
     lateinit var workout: OneRepFormulaUseCase.Workout

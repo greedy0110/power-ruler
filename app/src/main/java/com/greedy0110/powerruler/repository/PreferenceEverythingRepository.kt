@@ -57,9 +57,20 @@ class PreferenceEverythingRepository @Inject constructor(
         }
     }
 
+    override suspend fun setAdNotice(time: Long) {
+        sharedPreferences.edit {
+            putLong(AD_NOTICED, time)
+        }
+    }
+
+    override suspend fun getAdNotice(): Long {
+        return sharedPreferences.getLong(AD_NOTICED, 0L)
+    }
+
     private companion object {
         const val WEIGHT = "weight"
         const val REPEAT = "repeat"
         const val GOAL = "goal"
+        const val AD_NOTICED = "ad_noticed"
     }
 }
