@@ -7,7 +7,7 @@ apply plugin: 'com.google.gms.google-services'
 apply plugin: 'com.google.firebase.crashlytics'
 
 def applicationName = "1rmRecorder"
-def appVersionCode = 1
+def appVersionCode = 2
 def appVersionName = "0.9.0"
 
 def keystorePropertiesFile = rootProject.file("keystore.properties")
