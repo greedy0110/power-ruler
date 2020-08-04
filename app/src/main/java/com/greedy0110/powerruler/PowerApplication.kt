@@ -13,6 +13,8 @@ class PowerApplication : Application() {
 
         if (BuildConfig.DEBUG) Timber.plant(Timber.DebugTree())
 
-        MobileAds.initialize(this)
+        MobileAds.initialize(this) {
+            Timber.d("Ads 광고 초기화")
+        }
     }
 }
