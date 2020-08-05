@@ -23,7 +23,7 @@ class UserSettingUseCase @Inject constructor(
     fun needShowAd(): Boolean = runBlocking {
         val lastNoticed = everythingRepository.getAdNotice()
         val diff = System.currentTimeMillis() - lastNoticed
-        val coolTime = TimeUnit.SECONDS.toMillis(10)
+        val coolTime = TimeUnit.SECONDS.toMillis(30)
 
         Timber.d("$diff, $coolTime, $lastNoticed")
 

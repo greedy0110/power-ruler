@@ -20,14 +20,13 @@ import com.google.android.gms.ads.VideoOptions
 import com.google.android.gms.ads.formats.NativeAdOptions
 import com.google.android.gms.ads.formats.UnifiedNativeAd
 import com.google.android.gms.ads.formats.UnifiedNativeAdView
+import com.greedy0110.powerruler.R
 import com.greedy0110.powerruler.databinding.ActivityOneRepMaxBinding
 import com.greedy0110.powerruler.databinding.ItemOnerepWorkoutBinding
 import com.greedy0110.powerruler.databinding.NativeAdTemplateBinding
-import com.greedy0110.powerruler.feature.ad.AdDialogFragment
 import com.greedy0110.powerruler.feature.onerep.update.UpdateDialogFragment
 import com.greedy0110.powerruler.feature.settings.SettingsActivity
 import dagger.hilt.android.AndroidEntryPoint
-import timber.log.Timber
 
 @AndroidEntryPoint
 class OneRepMaxActivity : AppCompatActivity() {
@@ -199,8 +198,7 @@ class OneRepMaxActivity : AppCompatActivity() {
      *
      */
     private fun refreshAd() {
-        //TODO 테스트 id
-        val builder = AdLoader.Builder(this, "ca-app-pub-3940256099942544/2247696110")
+        val builder = AdLoader.Builder(this, getString(R.string.admob_main_native_id))
 
         builder.forUnifiedNativeAd { unifiedNativeAd ->
             val adBinding = NativeAdTemplateBinding.inflate(layoutInflater)

@@ -160,7 +160,7 @@
                                 android:id="@+id/ad_call_to_action"
                                 style="@style/TextStyle.BmEuljiro"
                                 android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
+                                android:layout_height="52dp"
                                 android:backgroundTint="@color/secondaryColor"
                                 android:gravity="center"
                                 android:textSize="14sp"
