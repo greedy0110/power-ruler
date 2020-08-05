@@ -5,6 +5,7 @@ import android.app.Dialog
 import android.os.Bundle
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.FragmentManager
+import com.google.android.gms.ads.AdLoader
 import com.google.android.gms.ads.AdRequest
 import com.greedy0110.powerruler.databinding.DialogAdBinding
 
@@ -14,8 +15,14 @@ class AdDialogFragment : DialogFragment() {
         return activity?.let {
             val binding = DialogAdBinding.inflate(layoutInflater, null, false)
 
+            val adLoader = AdLoader.Builder(it, "ca-app-pub-3940256099942544/2247696110")
+                .forUnifiedNativeAd { ad ->
+                    // TODO: show native_ad_template
+                }
+                .build()
+
             //TODO: 미리 로드하도록 구현해야 한다.
-            binding.nativeAd.loadAd(AdRequest.Builder().build())
+            adLoader.loadAd(AdRequest.Builder().build())
 
             return AlertDialog.Builder(it)
                 .setView(binding.root)

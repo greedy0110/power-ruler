@@ -6,17 +6,14 @@
 
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <com.google.android.gms.ads.formats.UnifiedNativeAdView
+        android:id="@+id/native_ad"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <com.google.android.gms.ads.NativeExpressAdView
-            android:id="@+id/native_ad"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            ads:adSize="280x250"
-            ads:adUnitId="@string/admob_main_native_id"
-            ads:layout_constraintStart_toStartOf="parent"
-            ads:layout_constraintTop_toTopOf="parent" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.gms.ads.formats.UnifiedNativeAdView>
 </layout>
