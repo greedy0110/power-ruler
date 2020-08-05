@@ -203,7 +203,6 @@ class OneRepMaxActivity : AppCompatActivity() {
         val builder = AdLoader.Builder(this, "ca-app-pub-3940256099942544/2247696110")
 
         builder.forUnifiedNativeAd { unifiedNativeAd ->
-            // OnUnifiedNativeAdLoadedListener implementation.
             val adBinding = NativeAdTemplateBinding.inflate(layoutInflater)
 
             populateUnifiedNativeAdView(unifiedNativeAd, adBinding)
@@ -211,7 +210,6 @@ class OneRepMaxActivity : AppCompatActivity() {
             binding.containerNativeAd.addView(adBinding.adView)
 
             adBinding.backgroundAd.setOnClickListener {
-                Timber.d("왓왓")
                 currentNativeAd?.destroy()
                 binding.containerNativeAd.removeAllViews()
             }
@@ -273,15 +271,12 @@ class OneRepMaxActivity : AppCompatActivity() {
             binding.itemHolder = item
 
             binding.root.setOnClickListener {
-                refreshAd()
-
                 UpdateDialogFragment.Builder(item.workout)
                     .setOnConfirmButton {
                         viewModel.refresh()
 
                         if (viewModel.needShowAd()) {
-                            AdDialogFragment.Builder()
-                                .show(supportFragmentManager)
+                            refreshAd()
                             viewModel.showAd()
                         }
                     }

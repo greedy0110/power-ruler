@@ -10,4 +10,6 @@
     <color name="secondaryTextColor">#000000</color>
 
     <color name="background">@color/primaryColor</color>
+
+    <color name="dim">#77000000</color>
 </resources>
